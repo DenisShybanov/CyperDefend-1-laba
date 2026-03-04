@@ -1,15 +1,16 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 app.use(cors());
 
-app.get("/chat-widget.js", (req, res) => {
-    res.type("application/javascript");
-    res.send(`
-        document.getElementById("chat").innerHTML =
-            "<h3>Support Chat (TrustCo)</h3><button onclick='alert(\"Chat opened\")'>Open Chat</button>";
-    `);
+// Статика для JS файлів
+app.use(express.static(path.join(__dirname)));
+
+// API для нових повідомлень
+app.get("/new-messages", (req, res) => {
+    res.json({ count: 2 });
 });
 
 app.listen(4000, () => {

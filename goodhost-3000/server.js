@@ -52,7 +52,7 @@ app.get("/", (req, res) => {
                 <div id="chat"></div>
 
                 <script src="http://localhost:7000/react.js"></script>
-                <script src="http://localhost:4000/chat-widget.js"></script>
+                <script src="http://localhost:4000/support.js"></script>
                 <script src="http://localhost:5000/weather-widget.js"></script>
             </body>
         </html>
