@@ -13,6 +13,26 @@ const configPath = path.join(__dirname, "config.json");
 const version = fs.readFileSync(versionPath, "utf8").trim();
 const config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
+const emails = [
+    {
+        id: 1,
+        sender: "Wolf@example.com",
+        subject: "Welcome to SecureMail",
+        body: "Hello John, welcome to SecureMail Pro. Have a secure day!"
+    },
+    {
+        id: 2,
+        sender: "Stash@example.com",
+        subject: "Meeting Reminder",
+        body: "John, don't forget our meeting at 3 PM today."
+    }
+];
+
+app.get("/emails", (req, res) => {
+    res.json(emails);
+});
+app.use(express.static(path.join(__dirname)));
+
 // === початок серверу ===
 app.get("/", (req, res) => {
     res.send(`
