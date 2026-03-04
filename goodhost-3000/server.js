@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// === READ CONFIG FILES ON STARTUP ===
 const versionPath = path.join(__dirname, "version.txt");
 const configPath = path.join(__dirname, "config.json");
 
@@ -20,7 +19,11 @@ app.get("/", (req, res) => {
         <html>
             <head>
                 <title>${config.appName}</title>
-                <link rel="stylesheet" href="http://localhost:6000/styles.css">
+                <link rel="stylesheet" href="http://localhost:7000/styles.css">
+                <script src="http://localhost:7000/react-mock.js"></script>
+                        <div class="logo-container">
+                        <img src="http://localhost:7000/logo.png" alt="Logo">
+                    </div>
             </head>
             <body>
                 <h1>${config.appName}</h1>
@@ -28,7 +31,7 @@ app.get("/", (req, res) => {
                 <div id="weather"></div>
                 <div id="chat"></div>
 
-                <script src="http://localhost:6000/react.js"></script>
+                <script src="http://localhost:7000/react.js"></script>
                 <script src="http://localhost:4000/chat-widget.js"></script>
                 <script src="http://localhost:5000/weather-widget.js"></script>
             </body>

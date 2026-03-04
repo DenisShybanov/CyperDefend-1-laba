@@ -1,5 +1,8 @@
 const express = require("express");
+const path = require("path");
 const app = express();
+
+app.use(express.static(path.join(__dirname)));
 
 app.get("/react.js", (req, res) => {
     res.type("application/javascript");
@@ -11,14 +14,18 @@ app.get("/styles.css", (req, res) => {
     res.send(`
         body {
             font-family: Arial;
-            background-color: #f4f4f4;
+            background-color: #ffffff;
         }
         h1 {
             color: navy;
         }
+        .logo-container img {
+            width: 120px;
+            height: auto;
+        }
     `);
 });
 
-app.listen(6000, () => {
-    console.log("StaticHost running on http://localhost:6000");
+app.listen(7000, () => {
+    console.log("StaticHost running on http://localhost:7000");
 });
