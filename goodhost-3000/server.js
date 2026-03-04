@@ -1,26 +1,28 @@
 const express = require("express");
-const fs = require("fs");
 const cors = require("cors");
+
 const app = express();
+app.use(cors());
+app.use(express.json());
 
-const config = JSON.parse(fs.readFileSync("./config.json"));
-const version = fs.readFileSync("./version.txt", "utf8");
+app.get("/", (req, res) => {
+    res.send(`
+        <html>
+            <head>
+                <title>WebMail App</title>
+                <link rel="stylesheet" href="http://localhost:6000/styles.css">
+            </head>
+            <body>
+                <h1>WebMail Dashboard</h1>
+                <div id="weather"></div>
+                <div id="chat"></div>
 
-console.log(`[System] Starting ${config.appName} v${version}...`);
-
-if (config.mode === "mode1") {
-    app.use(cors());
-}
-
-app.use(express.static("public"));
-
-const emails = [
-    { id: 1, sender: "admin@trustco.com", subject: "Welcome", body: "Welcome to SecureMail!" },
-    { id: 2, sender: "alerts@weather.com", subject: "Storm Alert", body: "Heavy rain tomorrow." }
-];
-
-app.get("/emails", (req, res) => {
-    res.json(emails);
+                <script src="http://localhost:6000/react.js"></script>
+                <script src="http://localhost:4000/chat-widget.js"></script>
+                <script src="http://localhost:5000/weather-widget.js"></script>
+            </body>
+        </html>
+    `);
 });
 
 app.listen(3000, () => {
