@@ -1,14 +1,14 @@
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 
 const app = express();
+
+// Mode1: дозволяємо всі origin
 app.use(cors());
 
-// Статика для JS файлів
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(__dirname));
 
-// API для нових повідомлень
+// API нових повідомлень
 app.get("/new-messages", (req, res) => {
     res.json({ count: 2 });
 });
